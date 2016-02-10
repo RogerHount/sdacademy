@@ -20,9 +20,9 @@
 	<body>
 		<ul class="nav nav-pills">
 			<li role="presentation" ><img class="a_logo" src="{% static 'images/python.png' %}" /></li>
-			<li role="presentation"><a href="index.html">Main</a></li>
-			<li role="presentation"><a href="contact.html">Contacts</a></li>
-			<li role="presentation"><a href="student_list.html">Students</a></li>
+			<li role="presentation"><a href="{% url 'index' %}">Main</a></li>
+			<li role="presentation"><a href="{% url 'contact' %}">Contacts</a></li>
+			<li role="presentation"><a href="{% url 'student_list' %}">Students</a></li>
 		</ul>
 		<div class="container"> <!-- container -->
 
