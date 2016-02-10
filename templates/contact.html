@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 
 <html lang="en">
@@ -8,20 +9,20 @@
     <title>COntacts</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../static/css/bootstrap.css" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 
     <!--student_defined_css_validity CSS -->
-    <link href="../static/css/style.css" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
     
     <!-- Bootstrap core JS -->
-    <script src="../static/js/bootstrap.js">script</script>
+    <script src="{% static 'js/bootstrap.js' %}">script</script>
   </head>
   <body>
     <ul class="nav nav-pills">
-      <li role="presentation" ><img class="a_logo" src="../static/images/python.png" /></li>
-      <li role="presentation"><a href="index.html">Main</a></li>
+      <li role="presentation" ><img class="a_logo" src="{% static 'images/python.png' %}" /></li>
+      <li role="presentation"><a href="{% url 'index' %}">Main</a></li>
       <li role="presentation" class="active"><a href="#">Contacts</a></li>
-      <li role="presentation"><a href="student_list.html">Students</a></li>
+      <li role="presentation"><a href="{% url 'student_list' %}">Students</a></li>
 
     </ul>
 
@@ -36,7 +37,7 @@
               <div class="a_data_organizers"><b>Skype:</b> santi_claus.gifts</div>
               <div class="a_data_organizers"><b>Email:</b> mikle_de_santa7@gmail.com</div>
               <div class="a_data_organizers"><b>Phone:</b> 8-421-437-13-13</div>
-              <div class="a_data_organizers"><img class="a_contacts" src="../static/images/director.png" ></div>
+              <div class="a_data_organizers"><img class="a_contacts" src="{% static 'images/director.png' %}" ></div>
             </div>    
           </div>
           <div class="col-sm-4">
@@ -46,7 +47,7 @@
               <div class="a_data_organizers"><b>Skype:</b> rage_n_fire.doom</div>
               <div class="a_data_organizers"><b>Email:</b> frank_stain1991@gmail.com</div>
               <div class="a_data_organizers"><b>Phone:</b> 9-876-543-21-00</div>
-              <div class="a_data_organizers"><img class="a_contacts" src="../static/images/manager.png" ></div>
+              <div class="a_data_organizers"><img class="a_contacts" src="{% static 'images/manager.png' %}" ></div>
             </div>
           </div>
           <div class="col-sm-4">
@@ -56,7 +57,7 @@
               <div class="a_data_organizers"><b>Skype:</b> trevor.philips.toc</div>
               <div class="a_data_organizers"><b>Email:</b> guns_n_drugs@gmail.com</div>
               <div class="a_data_organizers"><b>Phone:</b> 8-800-888-35-35</div>
-              <div class="a_data_organizers"><img class="a_contacts" src="../static/images/founder.png" ></div>
+              <div class="a_data_organizers"><img class="a_contacts" src="{% static 'images/founder.png' %}" ></div>
             </div>  
           </div>
         </div> <!--row -->
@@ -76,6 +77,6 @@
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">script</script>
       <!-- Include all compiled plugins (below), or include individual files as needed -->
-      <script src="../static/js/bootstrap.js">script</script>   
+      <script src="{% static 'js/bootstrap.js' %}">script</script>   
   </body>
 </html>

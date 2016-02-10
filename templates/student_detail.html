@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -9,15 +11,15 @@
 
 		
 		<!--student_defined_css_validity CSS -->
-		<link href="../static/css/style.css" rel="stylesheet">
+		<link href="{% static 'css/style.css' %}" rel="stylesheet">
 		<!-- Bootstrap core CSS -->
-		<link href="../static/css/bootstrap.css" rel="stylesheet">
+		<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 		<!-- Bootstrap core JS -->
-		<script src="../static/js/bootstrap.js">script</script>
+		<script src="{% static 'js/bootstrap.js' %}">script</script>
 	</head>
 	<body>
 		<ul class="nav nav-pills">
-			<li role="presentation" ><img class="a_logo" src="../static/images/python.png" /></li>
+			<li role="presentation" ><img class="a_logo" src="{% static 'images/python.png' %}" /></li>
 			<li role="presentation"><a href="index.html">Main</a></li>
 			<li role="presentation"><a href="contact.html">Contacts</a></li>
 			<li role="presentation"><a href="student_list.html">Students</a></li>
@@ -30,7 +32,7 @@
           <div class="col-sm-4">
             <div class="well well-lg">
               <div class="a_organizers"><h1 class="a_description_title">Gritch Joe</h1></div>
-              <div class="a_data_organizers"><img class="a_contacts" src="../static/images/student.png" ></div>
+              <div class="a_data_organizers"><img class="a_contacts" src="{% static 'images/student.png' %}" ></div>
               <div class="a_data_organizers"><b>Surname:</b> Gritch</div>
               <div class="a_data_organizers"><b>Name:</b> Joe</div>
               <div class="a_data_organizers"><b>Patronymic:</b> Alekseevich</div>

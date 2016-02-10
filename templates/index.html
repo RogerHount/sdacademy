@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 
 <html lang="en">
@@ -9,18 +10,18 @@
 
 		
 		<!--student_defined_css_validity CSS -->
-		<link href="../static/css/style.css" rel="stylesheet">
+		<link href="{% static 'css/style.css' %}" rel="stylesheet">
 		<!-- Bootstrap core CSS -->
-		<link href="../static/css/bootstrap.css" rel="stylesheet">
+		<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 		<!-- Bootstrap core JS -->
-		<script src="../static/js/bootstrap.js">script</script>
+		<script src="{% static 'js/bootstrap.js' %}">script</script>
 	</head>
 	<body>
 		<ul class="nav nav-pills">
-			<li role="presentation" ><img class="a_logo" src="../static/images/python.png" /></li>
+			<li role="presentation" ><img class="a_logo" src="{% static 'images/python.png' %}" /></li>
 			<li role="presentation" class="active"><a href="#">Main</a></li>
-			<li role="presentation"><a href="contact.html">Contacts</a></li>
-			<li role="presentation"><a href="student_list.html">Students</a></li>
+			<li role="presentation"><a href="{% url 'contact' %}">Contacts</a></li>
+			<li role="presentation"><a href="{% url 'student_list' %}">Students</a></li>
 		</ul>
 		<div class="well well-lg"> <!--well global -->
 			<div class="container">
@@ -132,7 +133,7 @@
 				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">script</script>
 				<!-- Include all compiled plugins (below), or include individual files as needed -->
-				<script src="../static/js/bootstrap.js">script</script>
+				<script src="{% static 'js/bootstrap.js' %}">script</script>
 			</div> <!-- /.container -->
 
 	</body>
