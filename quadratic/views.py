@@ -68,7 +68,7 @@ def quadratic_results(request):
 			answer = "Дискриминант равен нулю, квадратное уравнение имеет один действительный корень: x1 = x2 = %r" % (x1)
 			return render(request, 'results.html', {'a':a, 'b':b, 'c':c, 'discr':discr, 'discr_answer':discr_answer, 'answer':answer })
 		
-		else:
+		elif discr > 0:
 			x1 = ((-b) + math.sqrt(discr)) / (2.0 * a)
 			x2 = ((-b) - math.sqrt(discr)) / (2.0 * a)
 			answer = "Квадратное уравнение имеет два действительных корня: x1 = %r, x2 = %r" % (x1, x2)
