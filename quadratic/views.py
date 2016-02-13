@@ -48,26 +48,28 @@ def quadratic_results(request):
 	if error_count > 0:	
 		return render(request, 'results.html', {'a':a, 'b':b, 'c':c, 'a_error_code':a_error_code, 'b_error_code':b_error_code, 'c_error_code':c_error_code})
 
-
-	a = int(a)
-	b = int(b)
-	c = int(c)
-
-	#Discriminanto
-	discr = b * b - 4 * a * c
-
-	if discr < 0:
-		answer = "Дискриминант меньше нуля, квадратное уравнение не имеет действительных решений."
-		return render(request, 'results.html', {'a':a, 'b':b, 'c':c, 'discr':discr, 'answer':answer })
-	
-	elif discr == 0:
-		x1 = (-b) / 2.0 * a
-		x2 = x1
-		answer = "Дискриминант равен нулю, квадратное уравнение имеет один действительный корень: x1 = x2 = %r" % (x1)
-		return render(request, 'results.html', {'a':a, 'b':b, 'c':c, 'discr':discr, 'answer':answer })
-	
 	else:
-		x1 = ((-b) + math.sqrt(discr)) / (2.0 * a)
-		x2 = ((-b) - math.sqrt(discr)) / (2.0 * a)
-		answer = "Квадратное уравнение имеет два действительных корня: x1 = %r, x2 = %r" % (x1, x2)
-		return render(request, 'results.html', {'a':a, 'b':b, 'c':c, 'discr':discr, 'answer':answer })
+		a = int(a)
+		b = int(b)
+		c = int(c)
+
+		#Discriminanto
+		discr = b * b - 4 * a * c
+
+		if discr < 0:
+			discr_answer = "Дискриминант: %r" % (discr)
+			answer = "Дискриминант меньше нуля, квадратное уравнение не имеет действительных решений."
+			return render(request, 'results.html', {'a':a, 'b':b, 'c':c, 'discr':discr, 'discr_answer':discr_answer, 'answer':answer })
+		
+		elif discr == 0:
+			x1 = (-b) / 2.0 * a
+			x2 = x1
+			discr_answer = "Дискриминант: %r" % (discr)
+			answer = "Дискриминант равен нулю, квадратное уравнение имеет один действительный корень: x1 = x2 = %r" % (x1)
+			return render(request, 'results.html', {'a':a, 'b':b, 'c':c, 'discr':discr, 'discr_answer':discr_answer, 'answer':answer })
+		
+		else:
+			x1 = ((-b) + math.sqrt(discr)) / (2.0 * a)
+			x2 = ((-b) - math.sqrt(discr)) / (2.0 * a)
+			answer = "Квадратное уравнение имеет два действительных корня: x1 = %r, x2 = %r" % (x1, x2)
+			return render(request, 'results.html', {'a':a, 'b':b, 'c':c, 'discr':discr, 'answer':answer })
