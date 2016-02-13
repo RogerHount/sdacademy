@@ -72,5 +72,5 @@ def quadratic_results(request):
 			x1 = ((-b) + math.sqrt(discr)) / (2.0 * a)
 			x2 = ((-b) - math.sqrt(discr)) / (2.0 * a)
 			discr_answer = "Дискриминант: %r" % (discr)
-			answer = "Квадратное уравнение имеет два действительных корня: x1 = %r, x2 = %r" % (x1, x2)
+			answer = "Квадратное уравнение имеет два действительных корня: x1 = %r, x2 = %r" % (round(x1, 1), round(x2, 1))
 			return render(request, 'results.html', {'a':a, 'b':b, 'c':c, 'discr':discr, 'discr_answer':discr_answer, 'answer':answer })
