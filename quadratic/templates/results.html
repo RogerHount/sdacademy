@@ -1,0 +1,35 @@
+{% load staticfiles %}
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Results</title>
+	</head>
+	<body>
+		<p>Квадратное уравнение a*x*x + b*x + c = 0</p>
+		</dev>
+			<ul>
+				<li>
+					a = {{a}} </br>
+					{{a_error_code}}
+				</li>
+				<li>
+					b = {{b}} </br>
+					{{b_error_code}}
+				</li>
+				<li>
+					c = {{c}} </br>
+					{{c_error_code}}
+				</li>
+			</ul>
+		</dev>
+		<dev>
+			Дискриминант: {{discr}}
+		</dev>
+		</p>
+			<dev>
+				{{answer}}
+			</dev>	
+		</p>
+	</body>
+</html>
