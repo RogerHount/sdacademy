@@ -57,20 +57,20 @@ def quadratic_results(request):
 		discr = b * b - 4 * a * c
 
 		if discr < 0:
-			discr_answer = "Дискриминант: %r" % (discr)
+			discr_answer = "Дискриминант: %s" % (discr)
 			answer = "Дискриминант меньше нуля, квадратное уравнение не имеет действительных решений."
 			return render(request, 'results.html', {'a':a, 'b':b, 'c':c, 'discr':discr, 'discr_answer':discr_answer, 'answer':answer })
 		
 		elif discr == 0:
 			x1 = (-b) / 2.0 * a
 			x2 = x1
-			discr_answer = "Дискриминант: %r" % (discr)
-			answer = "Дискриминант равен нулю, квадратное уравнение имеет один действительный корень: x1 = x2 = %r" % (x1)
+			discr_answer = "Дискриминант: %s" % (discr)
+			answer = "Дискриминант равен нулю, квадратное уравнение имеет один действительный корень: x1 = x2 = %s" % (x1)
 			return render(request, 'results.html', {'a':a, 'b':b, 'c':c, 'discr':discr, 'discr_answer':discr_answer, 'answer':answer })
 		
 		elif discr > 0:
 			x1 = ((-b) + math.sqrt(discr)) / (2.0 * a)
 			x2 = ((-b) - math.sqrt(discr)) / (2.0 * a)
-			discr_answer = "Дискриминант: %r" % (discr)
-			answer = "Квадратное уравнение имеет два действительных корня: x1 = %r, x2 = %r" % (round(x1, 1), round(x2, 1))
+			discr_answer = "Дискриминант: %s" % (discr)
+			answer = "Квадратное уравнение имеет два действительных корня: x1 = %s, x2 = %s" % (round(x1, 1), round(x2, 1))
 			return render(request, 'results.html', {'a':a, 'b':b, 'c':c, 'discr':discr, 'discr_answer':discr_answer, 'answer':answer })
