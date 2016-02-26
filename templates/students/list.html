@@ -45,7 +45,7 @@
 						<tbody>
 							<tr>
 								<td class="a_table_by_center">{{ forloop.counter }}</td>
-								<td class="a_table_by_center"><a href="{% url 'students:detail' i.id %}">{{ i.name }} {{i.surname}}</td>
+								<td class="a_table_by_center"><a href="{% url 'students:detail' i.id %}">{{i.surname}} {{ i.name }}</td>
 								<td class="a_table_by_center">{{ i.address }}</td>
 								<td class="a_table_by_center">{{ i.skype }}</td>
 								<td class="a_table_by_center">
