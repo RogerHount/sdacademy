@@ -19,9 +19,9 @@
 	<body>
 		<ul class="nav nav-pills">
 			<li role="presentation" ><img class="a_logo" src="{% static 'images/python.png' %}" /></li>
-			<li role="presentation" class="active"><a href="{% url 'index' %}">Main</a></li>
+			<li role="presentation"><a href="{% url 'index' %}">Main</a></li>
 			<li role="presentation"><a href="{% url 'contact' %}">Contacts</a></li>
-			<li role="presentation"><a href="{% url 'students:list_view' %}">Students</a></li>
+			<li role="presentation" class="active"><a href="{% url 'students:list_view' %}">Students</a></li>
 		</ul>
 		<div class="well well-lg"> <!--well global -->
 			<div class="container">
@@ -35,7 +35,7 @@
 						<thead>
 							<tr>
 								<th>#</th>
-								<th>фамилия имя</th>
+								<th>имя фамилия пароли явки</th>
 								<th>адрес</th>
 								<th>скайп</th>
 								<th>курсы</th>
@@ -45,11 +45,14 @@
 						<tbody>
 							<tr>
 								<td class="a_table_by_center">{{ forloop.counter }}</td>
-								<td class="a_table_by_center">{{ i.name }} {{i.surname}}</td>
+								<td class="a_table_by_center"><a href="{% url 'students:detail' i.id %}">{{ i.name }} {{i.surname}}</td>
 								<td class="a_table_by_center">{{ i.address }}</td>
 								<td class="a_table_by_center">{{ i.skype }}</td>
-								
-								<td class="a_table_by_center">{{ all_courses.id }}</td>
+								<td class="a_table_by_center">
+									{% for k in i.courses.all %}
+									<a href="{% url 'courses:detail' k.id %}">{{ k.name }}</a></br>
+									{% endfor %}
+								</td>
 							</tr>
 						</tbody>
 						{% endfor %}

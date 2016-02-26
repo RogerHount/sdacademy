@@ -4,5 +4,5 @@ from courses.views import detail
 
 
 urlpatterns = patterns('',
-    url(r'^(?P<id_of_course>\d+)/$', detail, name='detail' ),
+    url(r'^(?P<id_of_course>\d+)/$', detail, name='detail'),
 )

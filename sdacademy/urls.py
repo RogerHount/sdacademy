@@ -7,7 +7,6 @@ urlpatterns = patterns('',
     url(r'^polls/', include('polls.urls', namespace="polls")),
     url(r'^admin/', include(admin.site.urls)),
 
-    #url(r'^$', "sdacademy.views.index", name='index'),
     url(r'^$', "courses.views.courses_list", name='index'),
     url(r'^contact/', 'sdacademy.views.contact' , name='contact'),
     url(r'^student_list/', 'sdacademy.views.student_list', name='student_list'),

@@ -44,7 +44,7 @@
 						{% for i in all_courses %}
 						<tbody>
 							<tr>
-								<td class="a_table_by_center"><a href="{% url 'courses:detail' i.id%}">{{ i }}</a></td>
+								<td class="a_table_by_center"><a href="{% url 'courses:detail' i.id %}">{{ i }}</a></td>
 								<td class="a_table_by_center">{{ i.short_description }}</td>
 
 							</tr>
