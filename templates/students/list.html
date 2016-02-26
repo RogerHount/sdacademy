@@ -26,27 +26,30 @@
 		<div class="well well-lg"> <!--well global -->
 			<div class="container">
 				
-				<h1>Высокие курсы ИТ для илитных серов</h1>
-				<h2 class="a_description_title">(c)</h2>
-					<div class="a_wide_description">
-						Здесь преподают только утонченности и изящности в области разработки аппликайшинов
-					</div> <!--a_wide_description -->
+				<h1>Список студентов</h1>
+				
 			</div>
 			<div class="well well-lg"> <!--well global -->
 				<div class="container">
 					<table class="table table-bordered">
 						<thead>
 							<tr>
-								<th>Курс</th>
-								<th>Описание</th>
+								<th>#</th>
+								<th>фамилия имя</th>
+								<th>адрес</th>
+								<th>скайп</th>
+								<th>курсы</th>
 							</tr>
 						</thead>
-						{% for i in all_courses %}
+						{% for i in all_students %}
 						<tbody>
 							<tr>
-								<td class="a_table_by_center"><a href="{% url 'courses:detail' i.id%}">{{ i }}</a></td>
-								<td class="a_table_by_center">{{ i.short_description }}</td>
-
+								<td class="a_table_by_center">{{ forloop.counter }}</td>
+								<td class="a_table_by_center">{{ i.name }} {{i.surname}}</td>
+								<td class="a_table_by_center">{{ i.address }}</td>
+								<td class="a_table_by_center">{{ i.skype }}</td>
+								
+								<td class="a_table_by_center">{{ all_courses.id }}</td>
 							</tr>
 						</tbody>
 						{% endfor %}

@@ -39,6 +39,8 @@ INSTALLED_APPS = (
     'polls',
     'sdacademy',
     'quadratic',
+    'courses',
+    'students',
 )
 
 MIDDLEWARE_CLASSES = (

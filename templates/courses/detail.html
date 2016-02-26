@@ -21,45 +21,43 @@
 			<li role="presentation" ><img class="a_logo" src="{% static 'images/python.png' %}" /></li>
 			<li role="presentation" class="active"><a href="{% url 'index' %}">Main</a></li>
 			<li role="presentation"><a href="{% url 'contact' %}">Contacts</a></li>
-			<li role="presentation"><a href="{% url 'students:list_view' %}">Students</a></li>
+			<li role="presentation"><a href="{% url 'students:detail' %} ?course_id={{defined_course.id }">Students</a></li>
 		</ul>
 		<div class="well well-lg"> <!--well global -->
 			<div class="container">
 				
-				<h1>Высокие курсы ИТ для илитных серов</h1>
-				<h2 class="a_description_title">(c)</h2>
+				<h1>{{ defined_course }}</h1>
+				
 					<div class="a_wide_description">
-						Здесь преподают только утонченности и изящности в области разработки аппликайшинов
+						{{ defined_course.description }}
 					</div> <!--a_wide_description -->
-			</div>
-			<div class="well well-lg"> <!--well global -->
-				<div class="container">
-					<table class="table table-bordered">
+
+			<table class="table table-bordered">
 						<thead>
 							<tr>
-								<th>Курс</th>
+								<th>#</th>
+								<th>Тема</th>
 								<th>Описание</th>
 							</tr>
 						</thead>
-						{% for i in all_courses %}
+						{% for i in list_of_lessons %}
 						<tbody>
 							<tr>
-								<td class="a_table_by_center"><a href="{% url 'courses:detail' i.id%}">{{ i }}</a></td>
-								<td class="a_table_by_center">{{ i.short_description }}</td>
+								<td class="a_table_by_center">{{ i.order }}</a></td>
+								<td class="a_table_by_center">{{ i }}</td>
+								<td class="a_table_by_center">{{ i.description }}</td>
 
 							</tr>
 						</tbody>
 						{% endfor %}
-					</table>
-				</div>	
-			</div>	
-		</div>	
+					</table>		
+
 				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">script</script>
 				<!-- Include all compiled plugins (below), or include individual files as needed -->
 				<script src="{% static 'js/bootstrap.js' %}">script</script>
-			
-
+			</div>
+		</div>
 
 	</body>
 </html>
