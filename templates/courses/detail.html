@@ -59,5 +59,43 @@
 			</div>
 		</div>
 
+			<div class="well well">
+				<h3>Преподаватель</h3>
+
+				<div class="panel panel-success">
+	    			<div class="panel-heading">
+	        			<h3 class="panel-title">Учитель</h3>
+	    			</div>
+	    			
+	    			<div class="panel-body">
+	    				<div class="well well">
+	    					<p>
+	    						<a href="{% url 'coaches:detail' defined_course.coach.id %}">
+	    							{{ defined_course.coach.user.first_name }} {{ defined_course.coach.user.last_name }}
+	    						</a>
+	    					</p>
+	    					{{ defined_course.coach.description }}
+	    				</div>
+	    			</div>
+	    			
+				</div>
+				<div class="panel panel-info">
+	    			<div class="panel-heading">
+	        			<h3 class="panel-title">Ассистент</h3>
+	    			</div>
+	    			
+	    			<div class="panel-body">
+	    				<div class="well well">
+	    					<p>
+	    						<a href="{% url 'coaches:detail' defined_course.assistant.id %}">
+	    							{{ defined_course.assistant.user.first_name }} {{ defined_course.assistant.user.last_name }}
+	    						</a>	
+	    					</p>
+	    					{{ defined_course.assistant.description }}
+	    				</div>
+	    			</div>
+	    			
+				</div>
+			</div>		
 	</body>
 </html>
