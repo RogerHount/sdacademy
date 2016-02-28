@@ -26,11 +26,39 @@
 		<div class="well well-lg"> <!--well global -->
 			<div class="container">
 				
-				<h1>NAME AND SURNAME</h1>
+				<h1>{{ defined_coach.user.first_name }} {{ defined_coach.user.last_name }}</h1>
 				
-					<div class="a_wide_description">
-						
-					</div> <!--a_wide_description -->
+				<div class="a_wide_description">
+					
+
+
+					<div class="container"> <!-- container -->
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="well well-lg">
+								<div class="a_data_organizers"><b>Дата рождения:</b> {{ defined_coach.date_of_birth }}</div>
+								<div class="a_data_organizers"><b>Адрес:</b> {{ defined_coach.address }}</div>
+								<div class="a_data_organizers"><b>Почта:</b> {{ defined_coach.email }}</div>
+								<div class="a_data_organizers"><b>Телефон:</b> {{defined_coach.phone }}</div>
+								<div class="a_data_organizers"><b>Скайп:</b> {{defined_coach.skype }}</div>
+								<div class="a_data_organizers"><b>Курсы тренер:</b> 
+								{% for i in defined_course_coach %}
+								<a href="{% url 'courses:detail' i.id %}">{{ i }}</a> студенты курса<a href="{% url 'students:list_view' %}?course_id={{ i.id }}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></br>
+								{% endfor %}
+								</div>
+								<div class="a_data_organizers"><b>Курсы ассистент:</b>
+								{% for i in defined_course_assistant %}
+								<a href="{% url 'courses:detail' i.id %}">{{ i }}</a> студенты курса<a href="{% url 'students:list_view' %}?course_id={{ i.id }}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></br>
+								{% endfor %}								 
+								</div>
+							</div>
+						</div> <!--row -->
+
+					</div> <!-- container -->
+
+
+
+				</div> <!--a_wide_description -->
 
 
 				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
