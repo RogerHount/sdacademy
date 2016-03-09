@@ -1,101 +1,55 @@
-{% load staticfiles %}
-<!DOCTYPE html>
+{% extends "base.html" %}
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>SD Academy</title>
 
-		
-		<!--student_defined_css_validity CSS -->
-		<link href="{% static 'css/style.css' %}" rel="stylesheet">
-		<!-- Bootstrap core CSS -->
-		<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
-		<!-- Bootstrap core JS -->
-		<script src="{% static 'js/bootstrap.js' %}">script</script>
-	</head>
-	<body>
-		<ul class="nav nav-pills">
-			<li role="presentation" ><img class="a_logo" src="{% static 'images/python.png' %}" /></li>
-			<li role="presentation" class="active"><a href="{% url 'index' %}">Main</a></li>
-			<li role="presentation"><a href="{% url 'contact' %}">Contacts</a></li>
-			<li role="presentation"><a href="{% url 'students:list_view' %}?course_id={{ defined_course.id }}">Students</a></li>
-		</ul>
-		<div class="well well-lg"> <!--well global -->
-			<div class="container">
-				
-				<h1>{{ defined_course }}</h1>
-				
-					<div class="a_wide_description">
-						{{ defined_course.description }}
-					</div> <!--a_wide_description -->
+{% block title %}Course details{% endblock title %}
 
-			<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>#</th>
-								<th>Тема</th>
-								<th>Описание</th>
-							</tr>
-						</thead>
-						{% for i in list_of_lessons %}
-						<tbody>
-							<tr>
-								<td class="a_table_by_center">{{ i.order }}</a></td>
-								<td class="a_table_by_center">{{ i }}</td>
-								<td class="a_table_by_center">{{ i.description }}</td>
 
-							</tr>
-						</tbody>
-						{% endfor %}
-					</table>		
+{% block nav_class_index %}active{% endblock %}
 
-				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">script</script>
-				<!-- Include all compiled plugins (below), or include individual files as needed -->
-				<script src="{% static 'js/bootstrap.js' %}">script</script>
+
+{% block student_selector %}{% url 'students:list_view' %}?course_id={{ defined_course.id }}{% endblock %}
+
+
+{% block content %}
+
+{% include "include/courses_include.html" with block_selected_course=defined_course block_numer="#" block_theme="Тема" block_description="Описание" %}
+<!-- include point here-->			
+<!-- include exit here-->			
+
+		<div class="well well">
+			<h3>Преподаватель</h3>
+			<div class="panel panel-success">
+    			<div class="panel-heading">
+        			<h3 class="panel-title">Учитель</h3>
+    			</div>
+	    			
+    			<div class="panel-body">
+    				<div class="well well">
+    					<p>
+    						<a href="{% url 'coaches:detail' defined_course.coach.id %}">
+    							{{ defined_course.coach.user.first_name }} {{ defined_course.coach.user.last_name }}
+    						</a>
+    					</p>
+    					{{ defined_course.coach.description }}
+    				</div>
+    			</div>
+	    			
 			</div>
-		</div>
-
-			<div class="well well">
-				<h3>Преподаватель</h3>
-
-				<div class="panel panel-success">
-	    			<div class="panel-heading">
-	        			<h3 class="panel-title">Учитель</h3>
-	    			</div>
-	    			
-	    			<div class="panel-body">
-	    				<div class="well well">
-	    					<p>
-	    						<a href="{% url 'coaches:detail' defined_course.coach.id %}">
-	    							{{ defined_course.coach.user.first_name }} {{ defined_course.coach.user.last_name }}
-	    						</a>
-	    					</p>
-	    					{{ defined_course.coach.description }}
-	    				</div>
-	    			</div>
-	    			
-				</div>
-				<div class="panel panel-info">
-	    			<div class="panel-heading">
-	        			<h3 class="panel-title">Ассистент</h3>
-	    			</div>
-	    			
-	    			<div class="panel-body">
-	    				<div class="well well">
-	    					<p>
-	    						<a href="{% url 'coaches:detail' defined_course.assistant.id %}">
-	    							{{ defined_course.assistant.user.first_name }} {{ defined_course.assistant.user.last_name }}
-	    						</a>	
-	    					</p>
-	    					{{ defined_course.assistant.description }}
-	    				</div>
-	    			</div>
-	    			
-				</div>
-			</div>		
-	</body>
-</html>
+			<div class="panel panel-info">
+    			<div class="panel-heading">
+        			<h3 class="panel-title">Ассистент</h3>
+    			</div>
+    			
+    			<div class="panel-body">
+    				<div class="well well">
+    					<p>
+    						<a href="{% url 'coaches:detail' defined_course.assistant.id %}">
+    							{{ defined_course.assistant.user.first_name }} {{ defined_course.assistant.user.last_name }}
+    						</a>	
+    					</p>
+    					{{ defined_course.assistant.description }}
+    				</div>
+    			</div>
+			</div>
+		</div>		
+{% endblock content %}

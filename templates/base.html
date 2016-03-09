@@ -1,0 +1,49 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>{% block title %}Default title{% endblock title %}</title>
+
+		
+		<!--student_defined_css_validity CSS -->
+		<link href="{% static 'css/style.css' %}" rel="stylesheet">
+		<!-- Bootstrap core CSS -->
+		<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+		<!-- Bootstrap core JS -->
+		<script src="{% static 'js/bootstrap.js' %}">script</script>
+	</head>
+	<body>
+		<ul class="nav nav-pills">
+			<li role="presentation" ><img class="a_logo" src="{% static 'images/python.png' %}" /></li>
+			<li role="presentation" class="{% block nav_class_index %}{% endblock %}"><a href="{% url 'index' %}">Main</a></li>
+			<li role="presentation" class="{% block nav_class_contact %}{% endblock %}"><a href="{% url 'contact' %}">Contacts</a></li>
+			<li role="presentation" class="{% block nav_class_student_list %}{% endblock %}"><a href="{% block student_selector %}{% url 'students:list_view' %}{% endblock %}">Students</a></li>
+		</ul>
+		<div class="well well-lg"> <!--well global -->
+
+
+{% block content %}<!-- Contain the templait for students list-->
+<div class="container">
+	<h1>{% block page_header %}{% endblock %}</h1>
+</div>
+<div class="well well-lg">
+	{% block page_content %}
+	{% endblock page_content %}
+</div>
+
+
+{% endblock content %}
+		</div>
+				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">script</script>
+				<!-- Include all compiled plugins (below), or include individual files as needed -->
+				<script src="{% static 'js/bootstrap.js' %}">script</script>
+			
+
+
+	</body>
+</html>

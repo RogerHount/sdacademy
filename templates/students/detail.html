@@ -1,55 +1,28 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>SD Academy</title>
-
-		
-		<!--student_defined_css_validity CSS -->
-		<link href="{% static 'css/style.css' %}" rel="stylesheet">
-		<!-- Bootstrap core CSS -->
-		<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
-		<!-- Bootstrap core JS -->
-		<script src="{% static 'js/bootstrap.js' %}">script</script>
-	</head>
-	<body>
-		<ul class="nav nav-pills">
-			<li role="presentation" ><img class="a_logo" src="{% static 'images/python.png' %}" /></li>
-			<li role="presentation"><a href="{% url 'index' %}">Main</a></li>
-			<li role="presentation"><a href="{% url 'contact' %}">Contacts</a></li>
-			<li role="presentation"><a href="{% url 'students:list_view' %}">Students</a></li>
-		</ul>
-		<div class="well well-lg"> <!--well global -->
-			<div class="container">
-				
-				<h1>{{ the_student.name }} {{ the_student.surname }}</h1>
-				
-			 <div class="row">
-          <div class="col-sm-4">
-            <div class="well well-lg">
-                <div class="a_data_organizers"><b>дата рождения:</b> {{ the_student.date_of_birth }}</div>
-                <div class="a_data_organizers"><b>адрес:</b>{{ the_student.address }}</div>
-                <div class="a_data_organizers"><b>почта:</b>{{ the_student.email }}/div>
-                <div class="a_data_organizers"><b>скайп:</b>{{ the_student.skype }}</div>
-                <div class="a_data_organizers"><b>телефон:</b>{{ the_student.phone }}</div>
-                <div class="a_data_organizers"><b>курсы:</br></b>
-                {% for k in the_student.courses.all %}
-                	<a href="{% url 'courses:detail' k.id %}">{{ k.name }}</a></br>
-                {% endfor %}
-              </div>
-            </div>    
-          </div>
-		</div>	
-				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">script</script>
-				<!-- Include all compiled plugins (below), or include individual files as needed -->
-				<script src="{% static 'js/bootstrap.js' %}">script</script>
-			
+{% extends "base.html" %}
 
 
-	</body>
-</html>
+{% block title %}student details{% endblock title %}
+
+
+{% block page_header %}{{ the_student.name }} {{ the_student.surname }}{% endblock page_header %}
+
+
+{% block page_content %}
+        <div class="container">
+             <div class="row">
+                <div class="col-sm-4">
+
+                        <div class="a_data_organizers"><b>дата рождения:</b> {{ the_student.date_of_birth }}</div>
+                        <div class="a_data_organizers"><b>адрес:</b>{{ the_student.address }}</div>
+                        <div class="a_data_organizers"><b>почта:</b>{{ the_student.email }}</div>
+                        <div class="a_data_organizers"><b>скайп:</b>{{ the_student.skype }}</div>
+                        <div class="a_data_organizers"><b>телефон:</b>{{ the_student.phone }}</div>
+                        <div class="a_data_organizers"><b>курсы:</br></b>
+                        {% for k in the_student.courses.all %}
+                            <a href="{% url 'courses:detail' k.id %}">{{ k.name }}</a></br>
+                        {% endfor %}
+                </div>    
+            </div>
+        </div>
+{% endblock page_content %}
+

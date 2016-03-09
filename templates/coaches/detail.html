@@ -1,29 +1,13 @@
-{% load staticfiles %}
-<!DOCTYPE html>
+{% extends "base.html" %}
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>SD Academy</title>
 
-		
-		<!--student_defined_css_validity CSS -->
-		<link href="{% static 'css/style.css' %}" rel="stylesheet">
-		<!-- Bootstrap core CSS -->
-		<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
-		<!-- Bootstrap core JS -->
-		<script src="{% static 'js/bootstrap.js' %}">script</script>
-	</head>
-	<body>
-		<ul class="nav nav-pills">
-			<li role="presentation"><img class="a_logo" src="{% static 'images/python.png' %}" /></li>
-			<li role="presentation"><a href="{% url 'index' %}">Main</a></li>
-			<li role="presentation"><a href="{% url 'contact' %}">Contacts</a></li>
-			<li role="presentation"><a href="{% url 'students:list_view' %}?course_id={{ defined_course.id }}">Students</a></li>
-		</ul>
-		<div class="well well-lg"> <!--well global -->
+{% block title %}Course details{% endblock title %}
+
+
+{% block student_selector %}{% url 'students:list_view' %}?course_id={{ defined_course.id }}{% endblock %}
+
+
+{% block content %}
 			<div class="container">
 				
 				<h1>{{ defined_coach.user.first_name }} {{ defined_coach.user.last_name }}</h1>
@@ -36,7 +20,7 @@
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="well well-lg">
-								<div class="a_data_organizers"><b>Дата рождения:</b> {{ defined_coach.date_of_birth }}</div>
+								<div class="a_data_organizers"><b>Дата рождения:</b> {{ defined_coach.date_of_birth|date:"d F, Y" }}</div>
 								<div class="a_data_organizers"><b>Адрес:</b> {{ defined_coach.address }}</div>
 								<div class="a_data_organizers"><b>Почта:</b> {{ defined_coach.user.email }}</div>
 								<div class="a_data_organizers"><b>Телефон:</b> {{defined_coach.phone }}</div>
@@ -53,19 +37,7 @@
 								</div>
 							</div>
 						</div> <!--row -->
-
 					</div> <!-- container -->
-
-
-
 				</div> <!--a_wide_description -->
-
-
-				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">script</script>
-				<!-- Include all compiled plugins (below), or include individual files as needed -->
-	
 			</div>
-		</div>			
-	</body>
-</html>
+{% endblock content %}

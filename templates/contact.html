@@ -1,31 +1,16 @@
+{% extends "base.html" %}
+
+
 {% load staticfiles %}
-<!DOCTYPE html>
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>COntacts</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+{% block title %}contacts{% endblock title %}
 
-    <!--student_defined_css_validity CSS -->
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
-    
-    <!-- Bootstrap core JS -->
-    <script src="{% static 'js/bootstrap.js' %}">script</script>
-  </head>
-  <body>
-    <ul class="nav nav-pills">
-      <li role="presentation" ><img class="a_logo" src="{% static 'images/python.png' %}" /></li>
-      <li role="presentation"><a href="{% url 'index' %}">Main</a></li>
-      <li role="presentation" class="active"><a href="{% url 'contact' %}">Contacts</a></li>
-      <li role="presentation"><a href="{% url 'students:list_view' %}">Students</a></li>
 
-    </ul>
+{% block nav_class_contact %}active{% endblock %}
 
+
+{% block content %}
     <div class="container"> <!-- container -->
         <h1 class="a_description_title">Организаторы курса</h1>
         
@@ -61,22 +46,15 @@
             </div>  
           </div>
         </div> <!--row -->
-
     </div> <!-- container -->
 
 
 
 
 
-  <div class="alert alert-success" role="alert">Более подробную информацию вы можете узнать из  <a href="http://lurkmore.to/%D0%93%D0%A2%D0%90" target="_blank">Википедии</a></div>
+    <div class="alert alert-success" role="alert">Более подробную информацию вы можете узнать из  <a href="http://lurkmore.to/%D0%93%D0%A2%D0%90" target="_blank">Википедии</a></div>
       <div class="a_quotation">
         <div>Питает джедая Сила. Но бойся темной стороны.</div>
         <div>(c)Конфуций</div>
       </div>
-
-      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">script</script>
-      <!-- Include all compiled plugins (below), or include individual files as needed -->
-      <script src="{% static 'js/bootstrap.js' %}">script</script>   
-  </body>
-</html>
+{% endblock content %}

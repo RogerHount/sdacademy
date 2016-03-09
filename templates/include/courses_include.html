@@ -1,0 +1,27 @@
+		<div class="container">
+			
+			<h1>{{ block_selected_course }}</h1>
+				
+			<div class="a_wide_description">
+				{{ defined_course.description|truncatechars:32 }}
+			</div>
+
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>{{ block_numer }}</th>
+						<th>{{ block_theme }}</th>
+						<th>{{ block_description }}</th>
+					</tr>
+				</thead>
+				{% for i in list_of_lessons %}
+				<tbody>
+					<tr>
+						<td class="a_table_by_center">{{ i.order }}</a></td>
+						<td class="a_table_by_center">{{ i }}</td>
+						<td class="a_table_by_center">{{ i.description }}</td>
+					</tr>
+				</tbody>
+				{% endfor %}
+			</table>		
+		</div>

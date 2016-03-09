@@ -1,29 +1,13 @@
-{% load staticfiles %}
-<!DOCTYPE html>
+{% extends "base.html" %}
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>SD Academy</title>
 
-		
-		<!--student_defined_css_validity CSS -->
-		<link href="{% static 'css/style.css' %}" rel="stylesheet">
-		<!-- Bootstrap core CSS -->
-		<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
-		<!-- Bootstrap core JS -->
-		<script src="{% static 'js/bootstrap.js' %}">script</script>
-	</head>
-	<body>
-		<ul class="nav nav-pills">
-			<li role="presentation" ><img class="a_logo" src="{% static 'images/python.png' %}" /></li>
-			<li role="presentation" class="active"><a href="{% url 'index' %}">Main</a></li>
-			<li role="presentation"><a href="{% url 'contact' %}">Contacts</a></li>
-			<li role="presentation"><a href="{% url 'students:list_view' %}">Students</a></li>
-		</ul>
-		<div class="well well-lg"> <!--well global -->
+{% block title %}SD academy{% endblock title %}
+
+
+{% block nav_class_index %}active{% endblock %}
+
+
+{% block content %}
 			<div class="container">
 				
 				<h1>Высокие курсы ИТ для илитных серов</h1>
@@ -44,22 +28,13 @@
 						{% for i in all_courses %}
 						<tbody>
 							<tr>
-								<td class="a_table_by_center"><a href="{% url 'courses:detail' i.id %}">{{ i }}</a></td>
-								<td class="a_table_by_center">{{ i.short_description }}</td>
+								<td class="a_table_by_center"><a href="{% url 'courses:detail' i.id %}">{{ i|upper }}</a></td>
+								<td class="a_table_by_center">{{ i.short_description|title }}</td>
 
 							</tr>
 						</tbody>
 						{% endfor %}
 					</table>
-				</div>	
-			</div>	
-		</div>	
-				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">script</script>
-				<!-- Include all compiled plugins (below), or include individual files as needed -->
-				<script src="{% static 'js/bootstrap.js' %}">script</script>
-			
-
-
-	</body>
-</html>
+				</div>
+			</div>
+{% endblock content %}
