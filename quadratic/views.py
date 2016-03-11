@@ -33,4 +33,4 @@ def quadratic_results(request):
 		form = QuadraticForm()
 
 	context['form'] = form    
-	return render(request, 'results.html', context)
+	return render(request, 'quadratic/results.html', context)

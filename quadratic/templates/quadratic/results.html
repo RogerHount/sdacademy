@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<title>Квадратное уравнение</title>
+    <h3>Квадратное уравнение a*x*x + b*x + c = 0</h3>
+  </head>
+  <body>
+    <form method="get">
+      {{ form.as_p }}
+      <input type="submit" value="Решить"/>
+    </form>
+    <ul>
+        <p>{{ zeroa }}</p>
+        <p>{{ emptya }}</p>
+        <p>{{ nonemptya }}</p>       
+
+        <p>{{ emptyb }}</p>
+        <p>{{ nonemptyb }}</p>
+
+        <p>{{ emptyc }}</p>
+        <p>{{ nonemptyc }}</p>
+    </ul>
+    <h3>{{ descr }}</h3>
+    <h3>{{ result }}</h3>
+  </body>
+</html>
