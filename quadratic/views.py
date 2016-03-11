@@ -1,76 +1,36 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
-import math
+from django import forms
+from quadratic.forms import QuadraticForm
 
 
 def quadratic_results(request):
-	error_count = 0
-	a = request.GET.get('a', '')
-	b = request.GET.get('b', '')
-	c = request.GET.get('c', '')
-	a_error_code = ''
-	b_error_code = ''
-	c_error_code = ''
-	answer = ''
-	x1 = 0
-	x2 = 0
+	context={}
+	if request.method == 'GET' and request.GET.keys():
+		form = QuadraticForm(request.GET)
+		if form.is_valid():
+			a = context['a'] = request.GET.get('a','')
+			b = context['b'] = request.GET.get('b','')
+			c = context['c'] = request.GET.get('c','')
 
-	# a checks
-	if not a:
-		error_count = error_count + 1
-		a_error_code = "коэффициент не определен"
-	elif not a.replace('-', '').isdigit():
-		error_count = error_count + 1
-		a_error_code = "коэффициент не целое число"	
-
-	elif int(a) == 0:
-		error_count = error_count + 1
-		a_error_code = "коэффициент при первом слагаемом уравнения не может быть равным нулю"
-
-	# b checks
-	if not b:
-		error_count = error_count + 1
-		b_error_code = "коэффициент не определен"
-	elif not b.replace('-', '').isdigit():
-		error_count = error_count + 1
-		b_error_code = "коэффициент не целое число"	
-
-	
-	# c checks
-	if not c:
-		error_count = error_count + 1
-		c_error_code = "коэффициент не определен"
-	elif not c.replace('-', '').isdigit():
-		error_count = error_count + 1
-		c_error_code = "коэффициент не целое число"	
-
-
-	if error_count > 0:	
-		return render(request, 'results.html', {'a':a, 'b':b, 'c':c, 'a_error_code':a_error_code, 'b_error_code':b_error_code, 'c_error_code':c_error_code})
-
+			context['d'] = float(b)**2 - 4*float(a)*float(c)
+			d = context['d']
+			if d > 0 and int(a) != 0:
+				context['descr'] = 'Дискриминант: %d' %d
+				context['x1'] = (-float(b) + float(d) ** (1/2.0)) / 2*float(a)
+				context['x2'] = (-float(b) - float(d) ** (1/2.0)) / 2*float(a)
+				print context['x2']
+				print context['x1']
+				context['result'] = "Квадратное уравнение имеет два действительных корня: x1 = %.1f, x2 = %.1f" % (context['x1'] + 0, context['x2'] + 0) 
+			elif d < 0:
+				context['descr'] = 'Дискриминант: %d' %d
+				context['result'] = "Дискриминант меньше нуля, квадратное уравнение не имеет действительных решений."
+			elif d == 0 and int(a) != 0:
+				context['descr'] = 'Дискриминант: %d' %d
+				context['x1'] = (-float(b) + float(d) ** (1/2.0)) / 2.0*float(a)
+				context['result'] = "Дискриминант равен нулю, квадратное уравнение имеет один действительный корень: x1 = x2 = %.1f" % (context['x1'] + 0)      
 	else:
-		a = int(a)
-		b = int(b)
-		c = int(c)
+		form = QuadraticForm()
 
-		#Discriminanto
-		discr = b * b - 4 * a * c
-
-		if discr < 0:
-			discr_answer = "Дискриминант: %s" % (discr)
-			answer = "Дискриминант меньше нуля, квадратное уравнение не имеет действительных решений."
-			return render(request, 'results.html', {'a':a, 'b':b, 'c':c, 'discr':discr, 'discr_answer':discr_answer, 'answer':answer })
-		
-		elif discr == 0:
-			x1 = (-b) / 2.0 * a
-			x2 = x1
-			discr_answer = "Дискриминант: %s" % (discr)
-			answer = "Дискриминант равен нулю, квадратное уравнение имеет один действительный корень: x1 = x2 = %s" % (x1)
-			return render(request, 'results.html', {'a':a, 'b':b, 'c':c, 'discr':discr, 'discr_answer':discr_answer, 'answer':answer })
-		
-		elif discr > 0:
-			x1 = ((-b) + math.sqrt(discr)) / (2.0 * a)
-			x2 = ((-b) - math.sqrt(discr)) / (2.0 * a)
-			discr_answer = "Дискриминант: %s" % (discr)
-			answer = "Квадратное уравнение имеет два действительных корня: x1 = %s, x2 = %s" % (x1, x2)
-			return render(request, 'results.html', {'a':a, 'b':b, 'c':c, 'discr':discr, 'discr_answer':discr_answer, 'answer':answer })
+	context['form'] = form    
+	return render(request, 'results.html', context)
