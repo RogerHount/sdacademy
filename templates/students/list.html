@@ -1,8 +1,24 @@
 {% extends "base.html" %}
 
 
+{% block student_message_success %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock student_message_success %}
+
+
+{% block nav_class_student_list %}active{% endblock %}
+
+
 {% block title %}Students list{% endblock title %}
 
+
+{% block student_add_form %}<p><a href="{% url 'students:add' %}">	Добавить студента</a></p>{% endblock student_add_form %}
 
 {% block page_header %}Список студентов{% endblock %}
 
@@ -17,6 +33,7 @@
 								<th>адрес</th>
 								<th>скайп</th>
 								<th>курсы</th>
+								<th>Операции</th>
 							</tr>
 						</thead>
 						{% for i in all_students %}
@@ -27,9 +44,17 @@
 								<td class="a_table_by_center">{{ i.address }}</td>
 								<td class="a_table_by_center">{{ i.skype }}</td>
 								<td class="a_table_by_center">
-									{% for k in i.courses.all %}
+								{% for k in i.courses.all %}
 									<a href="{% url 'courses:detail' k.id %}">{{ k.name }}</a></br>
-									{% endfor %}
+								{% endfor %}
+								</td>
+								<td class="a_table_by_center">
+								<a href="{% url 'students:edit' i.id %}">
+								<button type="button" class="btn btn-info">Изменить</button>
+								</a>
+								<a href="{% url 'students:remove' i.id %}">
+								<button type="button" class="btn btn-danger">Удалить</button>
+								</a>
 								</td>
 							</tr>
 						</tbody>

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+
+{% block nav_class_student_list %}active{% endblock %}
+
+
+{% block student_message_success %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock student_message_success %}
+
+{% block title %}Rempove student{% endblock title %}
+
+
+{% block page_header %}Удаление студента{% endblock %}
+
+
+{% block page_content %}
+    <form method='post'>
+    	{% csrf_token %}	
+    	<input type="submit" value="Удалить"/>
+    </form>
+{% endblock page_content %}
