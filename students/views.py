@@ -16,7 +16,7 @@ def list_view(request):
 		return render(request, 'students/list.html', {'all_students' : all_students })
 
 def detail(request, id_of_student):
-	the_student = Student.objects.get(pk = id_of_student)
+	the_student = Student.objects.get(id = id_of_student)
 	return render(request, 'students/detail.html', {'the_student': the_student })
 
 def create(request):
@@ -34,7 +34,7 @@ def create(request):
 	return render(request, 'students/add.html', {'form':form})
 
 def edit(request, student_to_edit):
-	student = Student.objects.get(pk = student_to_edit)
+	student = Student.objects.get(id = student_to_edit)
 	if request.method == 'POST':
 		form = StudentModelForm(request.POST, instance = student)
 		if form.is_valid():
@@ -47,7 +47,7 @@ def edit(request, student_to_edit):
 
 
 def remove(request, student_to_remove):
-	student = Student.objects.get(pk = student_to_remove)
+	student = Student.objects.get(id = student_to_remove)
 	if request.method == 'POST':
 		student.delete()
 		messages.success(request, "Info on %s %s has been sucessfully deleted." % (student.name, student.surname))
