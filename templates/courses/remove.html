@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+
+{% block title %}Remove course{% endblock title %}
+
+
+{% block page_header %}Удаление курса{% endblock %}
+
+
+{% block page_content %}
+    <form method='post'>
+    	{% csrf_token %}	
+    	<input type="submit" value="Удалить"/>
+    </form>
+{% endblock page_content %}

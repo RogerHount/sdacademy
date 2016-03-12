@@ -15,6 +15,11 @@
 {% include "include/courses_include.html" with block_selected_course=defined_course block_numer="#" block_theme="Тема" block_description="Описание" %}
 <!-- include point here-->			
 <!-- include exit here-->			
+<p>
+    <a href="{% url 'courses:add_lesson' defined_course.pk %}">
+        <button type="button" class="btn btn-warning">Добавить занятие</button>
+    </a>
+</p>
 
 		<div class="well well">
 			<h3>Преподаватель</h3>

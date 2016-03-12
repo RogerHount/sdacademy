@@ -1,5 +1,16 @@
 		<div class="container">
 			
+			{% block student_add_form %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+			{% endblock student_add_form %}
+
+
 			<h1>{{ block_selected_course }}</h1>
 				
 			<div class="a_wide_description">

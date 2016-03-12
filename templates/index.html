@@ -8,6 +8,17 @@
 
 
 {% block content %}
+
+
+{% block student_message_success %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock student_message_success %}
 			<div class="container">
 				
 				<h1>Высокие курсы ИТ для илитных серов</h1>
@@ -18,11 +29,13 @@
 			</div>
 			<div class="well well-lg"> <!--well global -->
 				<div class="container">
+					{% block student_add_form %}<p><a href="{% url 'courses:add' %}">	Добавить курс</a></p>{% endblock student_add_form %}
 					<table class="table table-bordered">
 						<thead>
 							<tr>
 								<th>Курс</th>
 								<th>Описание</th>
+								<th>Действие</th>
 							</tr>
 						</thead>
 						{% for i in all_courses %}
@@ -30,7 +43,16 @@
 							<tr>
 								<td class="a_table_by_center"><a href="{% url 'courses:detail' i.id %}">{{ i|upper }}</a></td>
 								<td class="a_table_by_center">{{ i.short_description|title }}</td>
-
+								<td >
+									<p><a href="{% url 'courses:edit' i.pk %}">
+									<button type="button" class="btn btn-info">Изменить</button>
+									</a>
+									</p>
+									<p><a href="{% url 'courses:remove' i.pk %}">
+										<button type="button" class="btn btn-danger">Удалить</button>
+									</a>
+									</p>
+								</td>
 							</tr>
 						</tbody>
 						{% endfor %}
