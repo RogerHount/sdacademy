@@ -31,11 +31,13 @@
     			<div class="panel-body">
     				<div class="well well">
     					<p>
+                            {% if defined_course.coach.id %}
     						<a href="{% url 'coaches:detail' defined_course.coach.id %}">
     							{{ defined_course.coach.user.first_name }} {{ defined_course.coach.user.last_name }}
     						</a>
     					</p>
     					{{ defined_course.coach.description }}
+                            {% endif %}
     				</div>
     			</div>
 	    			
@@ -48,11 +50,13 @@
     			<div class="panel-body">
     				<div class="well well">
     					<p>
+                            {% if defined_course.assistant.id %}
     						<a href="{% url 'coaches:detail' defined_course.assistant.id %}">
     							{{ defined_course.assistant.user.first_name }} {{ defined_course.assistant.user.last_name }}
     						</a>	
     					</p>
     					{{ defined_course.assistant.description }}
+                            {% endif %}
     				</div>
     			</div>
 			</div>
