@@ -21,6 +21,13 @@ class StudentListView(ListView):
 			queryset = Student.objects.filter(courses = course_id)
 		return queryset
 
+	def get_context_data(self, **kwargs):
+		context = super(StudentListView, self).get_context_data(**kwargs)
+		course_id = self.request.GET.get('course_id', '')
+		context['course_id'] = course_id
+		return context
+
+
 		
 class StudentDetailView(DetailView):
 	model = Student

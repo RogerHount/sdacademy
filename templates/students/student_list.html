@@ -62,6 +62,29 @@
 					</table>
 				</div>
 				
+				{% if course_id %}
+				<ul class="pagination">
+        			{% if page_obj.has_previous %}
+           			<li ><a href="?page={{ page_obj.previous_page_number }}&course_id={{ course_id }}"><< previous</a></li>
+        			{% endif %}
+
+    
+        			{% for i in paginator.page_range %}
+
+					<li class = 
+					{% if i == page_obj.number %}
+					"active"
+					{% endif%}
+					><a href="?page={{ i }}&course_id={{ course_id }}">{{ i }}</a></li>
+					
+					{% endfor %}
+
+        			{% if page_obj.has_next %}
+         		   	<li><a href="?page={{ page_obj.next_page_number }}&course_id={{ course_id }}">next >></a></li>
+        			{% endif %}
+  
+				</ul>
+				{% else %}
 				<ul class="pagination">
  
         			{% if page_obj.has_previous %}
@@ -84,5 +107,5 @@
         			{% endif %}
   
 				</ul>
-				
+				{% endif %}
 {% endblock page_content %}	
