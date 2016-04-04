@@ -4,6 +4,8 @@
 {% block nav_class_student_list %}active{% endblock %}
 
 
+{% block title %}{{ title }}{% endblock title %}
+
 {% block student_message_success %}
 {% if messages %}
 <ul class="messages">
@@ -14,15 +16,15 @@
 {% endif %}
 {% endblock student_message_success %}
 
-{% block title %}Rempove student{% endblock title %}
-
-
-{% block page_header %}Удаление студента{% endblock %}
+{% block page_header %}{{ title }}{% endblock %}
 
 
 {% block page_content %}
     <form method='post'>
     	{% csrf_token %}	
-    	<input type="submit" value="Удалить"/>
+    	{{ form.as_p }}
+    	<input type="submit" value="{{ buttonname }}"/>
     </form>
+
+
 {% endblock page_content %}

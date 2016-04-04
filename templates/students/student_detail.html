@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+
+{% block nav_class_student_list %}active{% endblock %}
+
+
+{% block title %}student details{% endblock title %}
+
+
+{% block page_header %}{{ object.name }} {{ object.surname }}{% endblock page_header %}
+
+
+{% block page_content %}
+        <div class="container">
+             <div class="row">
+                <div class="col-sm-4">
+
+                        <div class="a_data_organizers"><b>дата рождения:</b> {{ object.date_of_birth }}</div>
+                        <div class="a_data_organizers"><b>адрес:</b>{{ object.address }}</div>
+                        <div class="a_data_organizers"><b>почта:</b>{{ object.email }}</div>
+                        <div class="a_data_organizers"><b>скайп:</b>{{ object.skype }}</div>
+                        <div class="a_data_organizers"><b>телефон:</b>{{ object.phone }}</div>
+                        <div class="a_data_organizers"><b>курсы:</br></b>
+                        {% for k in object.courses.all %}
+                            <a href="{% url 'courses:detail' k.id %}">{{ k.name }}</a></br>
+                        {% endfor %}
+                </div>    
+            </div>
+        </div>
+{% endblock page_content %}
+
