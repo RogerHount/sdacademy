@@ -13,6 +13,10 @@ from django.contrib.messages.views import SuccessMessageMixin
 
 class StudentListView(ListView):
 	model = Student
+	paginate_by = 2
+	context_object_name = 'student_list'
+	
+
 
 	def get_queryset(self):
 		queryset = super(StudentListView, self).get_queryset()
