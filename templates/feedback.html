@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+
+{% block nav_class_feedback %}active{% endblock %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+
+{% block page_header %}{{ title }}{% endblock page_header %}
+
+
+{% block student_message_success %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock student_message_success %}
+
+{% block page_content %}
+    <form method='post'>
+    	{% csrf_token %}	
+    	{{ form.as_p }}
+    	<input type="submit" value="{{ buttonname }}"/>
+    </form>
+
+
+{% endblock page_content %}

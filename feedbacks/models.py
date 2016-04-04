@@ -5,7 +5,7 @@ class Feedback(models.Model):
     subject = models.CharField(max_length=255)
     message = models.CharField(max_length=255)
     from_email = models.EmailField()
-    create_date  = models.DateField(auto_now=True)
+    create_date  = models.DateTimeField(auto_now=True)
     
     def __unicode__(self):
         return self.name

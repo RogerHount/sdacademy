@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'courses',
     'students',
     'coaches',
+    'feedbacks',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -93,3 +94,10 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+
+ADMINS = (('Ivan', 'ivan.tarasenko@oracle.com'), ('Cardinal', 'cardinal@oracle.com'))
+
+DEFAULT_FROM_EMAIL = 'myemail@oracle.com'
