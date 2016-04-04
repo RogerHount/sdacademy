@@ -9,14 +9,10 @@ from django.contrib import messages
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.contrib.messages.views import SuccessMessageMixin
 
 class StudentListView(ListView):
 	model = Student
 	paginate_by = 2
-	
-
-
 
 	def get_queryset(self):
 		queryset = super(StudentListView, self).get_queryset()
@@ -32,7 +28,6 @@ class StudentDetailView(DetailView):
 
 class StudentCreateView(CreateView):
 	model = Student
-
 
 	def get_context_data(self, **kwargs):
 		context = super(StudentCreateView, self).get_context_data(**kwargs)
@@ -71,12 +66,13 @@ class StudentDeleteView(DeleteView):
 		context = super(StudentDeleteView, self).get_context_data(**kwargs)
 		context['buttonname'] = "Удалить"
 		context['title'] = "Student info suppression"
-		student = super(StudentDeleteView, self).get_object()
-		message_content = "Info on %s %s has been sucessfully deleted." % (student.name, student.surname)
-		messages.success(self.request, message_content)
+		
 		return context
 
 	def get_success_url(self):
+		studentdetails = super(StudentDeleteView, self).get_object()
+		message_content = "Info on %s %s has been sucessfully deleted." % (studentdetails.name, studentdetails.surname)
+		messages.success(self.request, message_content)
 		return reverse_lazy('students:list_view')
 
 	def form_valid(self, form):
@@ -87,19 +83,3 @@ class StudentDeleteView(DeleteView):
 #	def delete(self, request, *args, **kwargs):
 #		messages.success(self.request, self.success_message)
 #		return super(StudentDeleteView, self).delete(request, *args, **kwargs)
-
-
-
-
-
-
-#def remove(request, student_to_remove):
-#	context = {}
-#	student = Student.objects.get(id = student_to_remove)
-#	if request.method == 'POST':
-#		student.delete()
-#		messages.success(request, "Info on %s %s has been sucessfully deleted." % (student.name, student.surname))
-#		return redirect('students:list_view')
-#	form = None
-#	context['form'] = form
-#	return render(request, 'students/remove.html', context)
